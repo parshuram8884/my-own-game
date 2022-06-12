@@ -8,7 +8,7 @@ var score=0 ;
 function preload(){
   spaceshipImg=loadImage("spaceship.png");
   asteroidImg=loadImage("asteroids.png");
-  bulletIg=loadImage("bullet.png")
+  bulletImg=loadImage("bullet.png")
 }
 
 function setup() {
@@ -54,7 +54,7 @@ if (frameCount % 80 === 0) {
       
 
     }
-    if(asteroidsGroup.collide(bulletGroup)){
+    if(asteroidsGroup.collide(bulletsGroup)){
       handleBubbleCollision(asteroidsGroup);
     }
 
@@ -75,19 +75,19 @@ function drawasteroids(){
 
 
 function shootBullet(){
-  bullet= createSprite( width/2,150, 50,20)
-  bullet.y= spaceship.y-20
+  bullet= createSprite( 150,height/2, 50,50)
+  bullet.x= spaceship.x-20
   bullet.addImage(bulletImg)
-  bullet.scale=0.12
-  bullet.velocityY= 7
-  bulletGroup.add(bullet)
+  bullet.scale=0.25
+  bullet.velocityY= -7
+  bulletsGroup.add(bullet)
 }
 
 function handleBubbleCollision(asteroidsGroup){
-  if (life > 0) {
+  
      score=score+10;
-  }
-  bulletGroup.destroyEach()
+  
+  bulletsGroup.destroyEach()
   asteroidsGroup.destroyEach()
 }
 
